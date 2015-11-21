@@ -1,0 +1,31 @@
+Code Book for "Getting and Cleaning Data Course Project"
+----------------------------------------------------------------------
+### run_analysis.R
+
+The resulting data table contains 181 rows, and 67 columns.  The first column contains a Subject ID number, the second lists the activity, and subsequent columns list mean and standard deviations for various measurements.  There are 30 subjects, and six activities.  
+
+### The data file was derived by:
+
+1. Using download.file() and unzip() to download and unzip the required file.
+
+2. Using read.table and rbind to load and combine the following sets of .txt files.
+
+	"Y_test.txt" and "Y_train.txt" (Column name was named "Activity" using names())
+
+	"X_test.txt" and "X_train.txt" (Column headings for this were derived from "features.txt" using names())
+
+	"subject_test.txt" and "subject_train.txt" (Column heading was named "Subject" using names())
+
+3. str() was used to check the structure of resulting data frames/tables.
+
+4. The resulting three dataframes were combined into a single data frame "Data" using cbind.
+
+5. grep() and subset() were used to determine data columns related to mean and standard deviation, and select relevant columns from "Data". 
+
+6. ID codes (Data$Activity) were used to replace id numbers with Description activity labels (from activity_labels.txt) using logical matches. 
+
+7. using gsub() to replace non descriptive column headings with more readable headings. 
+
+8. using group_by, summarise_each, and funs to group and summarize data according to means.
+
+9. using write.csv and write.table to generate text and csv files.
